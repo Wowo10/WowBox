@@ -1,4 +1,5 @@
 <script>
+  import MessageInput from "./MessageInput.svelte"
   import { PostDTO } from "./models.js"
   import PostList from "./PostList.svelte"
 
@@ -23,6 +24,7 @@
     />
   {:then postdtos}
     <PostList posts={postdtos} />
+    <MessageInput />
   {:catch error}
     <p>{error.message}</p>
   {/await}
