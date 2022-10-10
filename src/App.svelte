@@ -16,19 +16,24 @@
   <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
 </svelte:head>
 
-<main>
-  {#await posts}
-    <img
-      src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5eeea355389655.59822ff824b72.gif"
-      alt="broken loading"
-    />
-  {:then postdtos}
+{#await posts}
+  <img
+    src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5eeea355389655.59822ff824b72.gif"
+    alt="broken loading"
+  />
+{:then postdtos}
+  <div class="flexbox-container">
     <PostList posts={postdtos} />
     <MessageInput />
-  {:catch error}
-    <p>{error.message}</p>
-  {/await}
-</main>
+  </div>
+{:catch error}
+  <p>{error.message}</p>
+{/await}
 
 <style>
+  .flexbox-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
 </style>

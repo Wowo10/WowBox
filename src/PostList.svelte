@@ -13,5 +13,8 @@
 <style>
   .postList {
     border: 2px dotted firebrick;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
   }
 </style>
