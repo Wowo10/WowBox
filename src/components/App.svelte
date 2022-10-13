@@ -1,6 +1,6 @@
 <script>
   import MessageInput from "./MessageInput.svelte"
-  import { PostDTO } from "./models.js"
+  import { PostDTO } from "../models.js"
   import PostList from "./PostList.svelte"
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
