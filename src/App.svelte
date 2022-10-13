@@ -5,11 +5,20 @@
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-  let posts = sleep(1000).then(() => [
-    new PostDTO("Gr00t", new Date(new Date() - 60 * 60000), "I am Gr00t"),
-    new PostDTO("Gr00t", new Date(new Date() - 30 * 60000), "I am Gr00t"),
-    new PostDTO("Gr00t", new Date(), "I am Gr00t"),
-  ])
+  let preparePosts = (n) => {
+    let list = []
+    const d = new Date()
+
+    for (let index = 0; index < n; index++) {
+      list.push(
+        new PostDTO("Gr00t", new Date(d - 60 * 60000 * index), "I am Gr00t")
+      )
+    }
+
+    return list
+  }
+
+  let posts = sleep(1000).then(() => preparePosts(10))
 </script>
 
 <svelte:head>
