@@ -1,8 +1,10 @@
 html,
-body,
-.full-screen {
+body{
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
+
 
 body {
   color: #333;
@@ -64,4 +66,4 @@ button:not(:disabled):active {
 
 button:focus {
   border-color: #666;
-}
+} 

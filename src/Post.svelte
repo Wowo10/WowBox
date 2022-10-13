@@ -13,8 +13,11 @@
     border: 1px solid black;
     border-top: black solid 0px;
   }
+
+  /* https://stackoverflow.com/questions/36130760/use-justify-content-flex-end-and-to-have-vertical-scrollbar */
   .post:first-child {
     border-top: black solid 1px;
+    margin-top: auto !important;
   }
 
   .nickname {

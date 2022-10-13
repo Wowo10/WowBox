@@ -12,10 +12,9 @@
 
 <style>
   .postList {
-    border: 2px dotted firebrick;
-    flex-grow: 1;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    overflow: scroll;
   }
 </style>
