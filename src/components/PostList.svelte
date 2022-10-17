@@ -6,7 +6,7 @@
 
 <div class="postList">
   {#each posts as post}
-    <Post PostData={post} />
+    <Post PostDTO={post} />
   {/each}
 </div>
 

@@ -1,39 +1,42 @@
 <script>
   import MessageInput from "./MessageInput.svelte"
-  import { PostDTO } from "../models.js"
   import PostList from "./PostList.svelte"
+  import { getPosts, sendPost } from "../lib/apiService"
+  import { PostDTO, PostModel } from "../models"
 
-  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+  let postdtos = []
+  let postsPromise = getPosts().then((posts) => {
+    postdtos = posts
+  })
 
-  let preparePosts = (n) => {
-    let list = []
-    const d = new Date()
+  let createPost = (nickname, content) => {
+    console.log(nickname, content)
+    console.log(postdtos)
 
-    for (let index = 0; index < n; index++) {
-      list.push(
-        new PostDTO("Gr00t", new Date(d - 60 * 60000 * index), "I am Gr00t")
-      )
-    }
+    const model = new PostModel(nickname, new Date(), content)
+    const index = postdtos.length
 
-    return list
+    postdtos = [...postdtos, new PostDTO(model, false)]
+    sendPost(model).then(() => {
+      console.log(`${nickname} said ${content}`)
+      postdtos[index].sent = true
+    })
   }
-
-  let posts = sleep(1000).then(() => preparePosts(10))
 </script>
 
 <svelte:head>
   <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
 </svelte:head>
 
-{#await posts}
+{#await postsPromise}
   <img
     src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/5eeea355389655.59822ff824b72.gif"
     alt="broken loading"
   />
-{:then postdtos}
+{:then}
   <div class="flexbox-container">
     <PostList posts={postdtos} />
-    <MessageInput />
+    <MessageInput CreatePostCallback={createPost} />
   </div>
 {:catch error}
   <p>{error.message}</p>
