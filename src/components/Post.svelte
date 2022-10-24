@@ -50,6 +50,10 @@
     display: none;
   }
 
+  .content {
+    overflow-wrap: break-word;
+  }
+
   .displayed {
     display: inline;
   }
