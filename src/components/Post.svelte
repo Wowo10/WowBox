@@ -3,17 +3,19 @@
 </script>
 
 <div class="post">
-  <span class="nickname">u/{PostDTO.nickname}</span>
-  <span class="date">@{PostDTO.date.toLocaleString()}</span>
-  <span class="loader" class:displayed={!PostDTO.sent}>
+  <div class="content-box">
+    <span class="nickname">u/{PostDTO.nickname}</span>
+    <span class="date">@{PostDTO.date.toLocaleString()}</span>
+    <div class="content">
+      {PostDTO.content}
+    </div>
+  </div>
+  <div class="loader" class:displayed={!PostDTO.sent}>
     <img
       src="https://bestanimations.com/media/gears/513504963black-moving-gears-animation.gif"
       alt="Sending..."
-      width="40px"
+      height="35px"
     />
-  </span>
-  <div class="content">
-    {PostDTO.content}
   </div>
 </div>
 
@@ -36,6 +38,11 @@
     margin-top: auto !important;
   }
 
+  .content-box {
+    display: inline-block;
+    width: 95%;
+  }
+
   .nickname {
     font-weight: bold;
   }
@@ -46,7 +53,6 @@
   }
 
   .loader {
-    margin-left: 200px;
     display: none;
   }
 
